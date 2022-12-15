@@ -63,7 +63,7 @@ for a in range(n**2):
     test = asal(a)
     if test == 1:
         matrix[x[a]][y[a]] = 1
-        plt.plot(x[a],y[a],'o--', color = 'black', markersize = 0.4)        
+        plt.plot(x[a],y[a],'o--', color = 'black', markersize = 0.5)        
     else:
         matrix[x[a]][y[a]] = 0
 
