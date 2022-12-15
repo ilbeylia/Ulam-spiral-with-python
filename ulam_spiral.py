@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 
-size = 10
+n = 251 
 
 def spiral(dizi):
     rows, cols = dizi.shape
@@ -23,49 +23,59 @@ def spiral(dizi):
 
     return spiral_id
 
-sayilar = np.zeros(size**2)
-test = spiral(sayilar.reshape(size,size))
+sayilar = np.zeros(n**2)
+test = spiral(sayilar.reshape(n,n))
 test = np.hstack (test)
 
 
-n = 10
 matrix =  [ [0 for i in range(n)] for j in range (n)]
 
 x = []
 y = []
 
 for i in test:
-    if i == 90 :
+    if i == (n**2 - n) :
         x.append(i % n) 
-        y.append(9)
+        y.append(n-1)
     else:
         x.append(i % n) 
         y.append((i // n))
 
+
 def asal(değer):
-    if değer>2:
-        for t in range(2,değer):
-            if (değer % t) == 0: 
-                asalD = 0
+    if (değer >2):
+        for i in range(2,değer):
+            if ((değer % i) == 0):
+                asala = 0
+                break
             else:
-                asalD = 1     
+                asala = 1
+
+    elif değer == 2:
+        asala = 1
+    
+    else :
+        asala=0
+
+    return asala
+
+for a in range(n**2):
+    test = asal(a)
+    if test == 1:
+        matrix[x[a]][y[a]] = 1
+        plt.plot(x[a],y[a],'o--', color = 'black', markersize = 2)        
     else:
-        asalD = 1
-    return asalD
-
-test = asal(17)
-print(test)
-
-
-for a in range(100):
-        matrix[x[a]][y[a]] = a+1
-
-
+        matrix[x[a]][y[a]] = 0
 
 matrix = np.array(matrix)
 matrix = matrix.reshape(n,n)
 
 print(matrix)
+
+
+
+plt.axis("off")
+plt.show()
 
 
 
